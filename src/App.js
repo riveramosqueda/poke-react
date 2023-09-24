@@ -1,7 +1,12 @@
+import PokemonProvider from './context/pokemons/PokemonProvider';
 import Routing from './routes';
 
 function App() {
-  return <Routing />;
+  return (
+    <PokemonProvider>
+      <Routing />
+    </PokemonProvider>
+  );
 }
 
 export default App;
