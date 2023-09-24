@@ -1,13 +1,7 @@
-import Search from './views/Search'
+import Routing from './routes';
 
 function App() {
-  return (
-    <div className="container">
-      <div className='row'>
-        <Search />
-      </div>
-    </div>
-  );
+  return <Routing />;
 }
 
 export default App;
