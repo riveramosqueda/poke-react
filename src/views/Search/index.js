@@ -10,24 +10,14 @@ export default function Search(){
     const [data,setData]=useState([]);
     const [activeSearch, setActiveSearch]=useState(false);
     const [searchResults,setSearchResults]=useState([]);
-    const {showAlert}=useContext(PokemonContext);
+    const {getPokemons, pokemons}=useContext(PokemonContext);
 
     useEffect(()=>{
-        const getUsers=async()=>{
-            try {
-                const {data}=await axios.get('https://jsonplaceholder.typicode.com/users');
-                setData(data);
-            } catch (error) {
-                console.error(error);
-            }
-            
-        };
-
-        showAlert();
+        getPokemons().catch(null);
         
-        getUsers();
     }, []);
 
+    console.log(pokemons);
     const handleSearchClick=(searchText)=>{
         if(data?.length){
             const filteredData=data.filter((item)=>{
