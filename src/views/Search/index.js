@@ -1,12 +1,12 @@
 import SearchBox from './components/SearchBox';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import SearchResults from './components/SearchResults';
 import { useContext } from 'react';
 import PokemonContext from '../../context/pokemons';
+import LoadingScreen from '../PropElements/LoadingScreen';
 
 export default function Search(){
-    const [activeSearch, setActiveSearch]=useState(false);
-    const {getPokemons, pokemons, metadata}=useContext(PokemonContext);
+    const {getPokemons, setActiveSearch, pokemons, metadata, activeSearch}=useContext(PokemonContext);
 
     useEffect(()=>{
         getPokemons().catch(null);
@@ -35,7 +35,11 @@ export default function Search(){
     return (
         <div className='container'>
             <SearchBox onSearch={handleSearchClick} onClear={handleClearClick} activeSearch={activeSearch} />
-            <SearchResults pokemons={pokemons} metadata={metadata} activeSearch={activeSearch} />
+            {
+                (activeSearch && <LoadingScreen />)
+                ||
+                (!activeSearch && <SearchResults pokemons={pokemons} metadata={metadata} activeSearch={activeSearch} />)
+            }
         </div>
     );
 }
