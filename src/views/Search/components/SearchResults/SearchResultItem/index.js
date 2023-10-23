@@ -1,10 +1,11 @@
-export default function SearchResultItem({item}){
+import { Link } from "react-router-dom";
+
+export default function SearchResultItem({item, pokemonNumber}){
     return (
         <tr>
-            <td>{item.id}</td>
+            <td>{pokemonNumber}</td>
             <td>{item.name}</td>
-            <td>{item.email}</td>
-            <td>{item.phone}</td>
+            <td><Link to={`/pokemon/${pokemonNumber}`}>More information</Link></td>
         </tr>
     );
 }
